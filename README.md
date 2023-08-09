@@ -1,8 +1,6 @@
 # Warrant Go Library
 
-Use [Warrant](https://warrant.dev/) in server-side Go projects.
-
-[![Slack](https://img.shields.io/badge/slack-join-brightgreen)](https://join.slack.com/t/warrantcommunity/shared_invite/zt-12g84updv-5l1pktJf2bI5WIKN4_~f4w)
+Use [Forge4Flow](https://github.com/Forge4Flow) in server-side Go projects.
 
 ## Installation
 
@@ -12,7 +10,7 @@ go get github.com/forge4flow/forge4flow-go
 
 ## Usage
 
-You can use the Warrant SDK with or without a client. Instantiating a client allows you to create different client instances each with their own config (API key, API endpoint, etc).
+You can use the Forge4Flow SDK with or without a client. Instantiating a client allows you to create different client instances each with their own config (API key, API endpoint, etc).
 
 ### Without a Client
 

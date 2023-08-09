@@ -11,6 +11,15 @@ type Session struct {
 	TTL      int64  `json:"ttl"`
 }
 
+type VerifySessionParams struct {
+	SessionId string `json:"sessionId"`
+}
+
+type VerifySessionResponse struct {
+	UserId string `json:"userId"`
+	Result string `json:"result"`
+}
+
 type AuthorizationSessionParams struct {
 	UserId string `json:"userId"`
 	TTL    int64  `json:"ttl"`

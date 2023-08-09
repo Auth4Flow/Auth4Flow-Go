@@ -202,6 +202,33 @@ func CheckHasFeature(params *FeatureCheckParams) (bool, error) {
 	return getClient().CheckHasFeature(params)
 }
 
+func (c Client) HasValidSession(params *VerifySessionParams) (bool, error) {
+	resp, err := c.forge4FlowClient.MakeRequest("POST", "/v1/session/verify", params)
+	if err != nil {
+		return false, err
+	}
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return false, client.WrapError("Error reading response", err)
+	}
+	var result VerifySessionResponse
+	err = json.Unmarshal([]byte(body), &result)
+	if err != nil {
+		return false, client.WrapError("Invalid response from server", err)
+	}
+
+	if result.Result == "Valid" {
+		return true, nil
+	}
+
+	return false, nil
+}
+
+func HasValidSession(params *VerifySessionParams) (bool, error) {
+	return getClient().HasValidSession(params)
+}
+
 func (c Client) makeAuthorizeRequest(params *AccessCheckRequest) (*WarrantCheckResult, error) {
 	resp, err := c.forge4FlowClient.MakeRequest("POST", "/v2/authorize", params)
 	if err != nil {
