@@ -6,19 +6,18 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/forge4flow/forge4flow-go/client"
+	"github.com/forge4flow/forge4flow-go/config"
 	"github.com/google/go-querystring/query"
-	"github.com/warrant-dev/warrant-go/v3"
-	"github.com/warrant-dev/warrant-go/v3/client"
-	"github.com/warrant-dev/warrant-go/v3/config"
 )
 
 type Client struct {
-	warrantClient *client.WarrantClient
+	warrantClient *client.Forge4FlowClient
 }
 
 func NewClient(config config.ClientConfig) Client {
 	return Client{
-		warrantClient: &client.WarrantClient{
+		warrantClient: &client.Forge4FlowClient{
 			HttpClient: http.DefaultClient,
 			Config:     config,
 		},
@@ -193,7 +192,7 @@ func getClient() Client {
 	}
 
 	return Client{
-		&client.WarrantClient{
+		&client.Forge4FlowClient{
 			HttpClient: http.DefaultClient,
 			Config:     config,
 		},

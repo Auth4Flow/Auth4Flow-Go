@@ -1,4 +1,4 @@
-package warrant
+package forge4flow
 
 import (
 	"encoding/json"
@@ -7,18 +7,18 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/forge4flow/forge4flow-go/client"
+	"github.com/forge4flow/forge4flow-go/config"
 	"github.com/google/go-querystring/query"
-	"github.com/warrant-dev/warrant-go/v3/client"
-	"github.com/warrant-dev/warrant-go/v3/config"
 )
 
 type Client struct {
-	warrantClient *client.WarrantClient
+	forge4FlowClient *client.Forge4FlowClient
 }
 
 func NewClient(config config.ClientConfig) Client {
 	return Client{
-		warrantClient: &client.WarrantClient{
+		forge4FlowClient: &client.Forge4FlowClient{
 			HttpClient: http.DefaultClient,
 			Config:     config,
 		},
@@ -26,7 +26,7 @@ func NewClient(config config.ClientConfig) Client {
 }
 
 func (c Client) Create(params *WarrantParams) (*Warrant, error) {
-	resp, err := c.warrantClient.MakeRequest("POST", "/v1/warrants", params)
+	resp, err := c.forge4FlowClient.MakeRequest("POST", "/v1/warrants", params)
 	if err != nil {
 		return nil, err
 	}
@@ -47,7 +47,7 @@ func Create(params *WarrantParams) (*Warrant, error) {
 }
 
 func (c Client) Delete(params *WarrantParams) error {
-	_, err := c.warrantClient.MakeRequest("DELETE", "/v1/warrants", params)
+	_, err := c.forge4FlowClient.MakeRequest("DELETE", "/v1/warrants", params)
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func (c Client) Query(queryString string, listParams *ListWarrantParams) (*Query
 		return nil, client.WrapError("Could not parse listParams", err)
 	}
 
-	resp, err := c.warrantClient.MakeRequest("GET", fmt.Sprintf("/v1/query?q=%s&%s", url.QueryEscape(queryString), queryParams.Encode()), nil)
+	resp, err := c.forge4FlowClient.MakeRequest("GET", fmt.Sprintf("/v1/query?q=%s&%s", url.QueryEscape(queryString), queryParams.Encode()), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -203,7 +203,7 @@ func CheckHasFeature(params *FeatureCheckParams) (bool, error) {
 }
 
 func (c Client) makeAuthorizeRequest(params *AccessCheckRequest) (*WarrantCheckResult, error) {
-	resp, err := c.warrantClient.MakeRequest("POST", "/v2/authorize", params)
+	resp, err := c.forge4FlowClient.MakeRequest("POST", "/v2/authorize", params)
 	if err != nil {
 		return nil, err
 	}
@@ -229,7 +229,7 @@ func getClient() Client {
 	}
 
 	return Client{
-		&client.WarrantClient{
+		&client.Forge4FlowClient{
 			HttpClient: http.DefaultClient,
 			Config:     config,
 		},

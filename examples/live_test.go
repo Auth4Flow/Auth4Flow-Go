@@ -1,19 +1,17 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"testing"
 
+	"github.com/forge4flow/forge4flow-go/feature"
+	"github.com/forge4flow/forge4flow-go/permission"
+	"github.com/forge4flow/forge4flow-go/pricingtier"
+	"github.com/forge4flow/forge4flow-go/role"
+	"github.com/forge4flow/forge4flow-go/session"
+	"github.com/forge4flow/forge4flow-go/tenant"
+	"github.com/forge4flow/forge4flow-go/user"
 	"github.com/stretchr/testify/assert"
-	"github.com/warrant-dev/warrant-go/v3"
-	"github.com/warrant-dev/warrant-go/v3/feature"
-	"github.com/warrant-dev/warrant-go/v3/permission"
-	"github.com/warrant-dev/warrant-go/v3/pricingtier"
-	"github.com/warrant-dev/warrant-go/v3/role"
-	"github.com/warrant-dev/warrant-go/v3/session"
-	"github.com/warrant-dev/warrant-go/v3/tenant"
-	"github.com/warrant-dev/warrant-go/v3/user"
 )
 
 func setup() {

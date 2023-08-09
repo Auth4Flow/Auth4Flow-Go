@@ -7,19 +7,19 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/warrant-dev/warrant-go/v3/config"
+	"github.com/forge4flow/forge4flow-go/config"
 )
 
 const (
 	ClientVersion string = "3.1.0"
 )
 
-type WarrantClient struct {
+type Forge4FlowClient struct {
 	HttpClient *http.Client
 	Config     config.ClientConfig
 }
 
-func (client WarrantClient) MakeRequest(method string, path string, payload interface{}) (*http.Response, error) {
+func (client Forge4FlowClient) MakeRequest(method string, path string, payload interface{}) (*http.Response, error) {
 	url := client.Config.ApiEndpoint + path
 	if payload == nil {
 		req, err := http.NewRequest(method, url, nil)

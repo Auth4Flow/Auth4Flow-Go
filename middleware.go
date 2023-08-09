@@ -1,10 +1,10 @@
-package warrant
+package forge4flow
 
 import (
 	"log"
 	"net/http"
 
-	"github.com/warrant-dev/warrant-go/v3/config"
+	"github.com/forge4flow/forge4flow-go/config"
 )
 
 type GetObjectIdFunc func(r *http.Request) string

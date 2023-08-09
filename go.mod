@@ -1,4 +1,4 @@
-module github.com/warrant-dev/warrant-go/v3
+module github.com/forge4flow/forge4flow-go
 
 go 1.20
 
